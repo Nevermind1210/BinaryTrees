@@ -16,22 +16,19 @@ public:
 
 	bool IsEmpty() const;
 	void Insert(int a_nValue);
+	void reInsert(TreeNode* node);
 	void Remove(int a_nValue);
 	TreeNode* Find(int a_nValue);
 
-	void PrintOrdered();
-	void PrintUnordered();
 
 	void Draw(TreeNode* selected = nullptr);
+
+	TreeNode* currentNode = nullptr;
+	TreeNode* currentParent = nullptr;
 
 private:
 	//Find the node with the specified value.
 	bool FindNode(int a_nSearchValue, TreeNode*& ppOutNode, TreeNode*& ppOutParent);
-
-	//Used to recurse through the nodes in value order and print their values.
-	void PrintOrderedRecurse(TreeNode*);
-	void PrintUnorderedRecurse(TreeNode*);
-
 
 	void Draw(TreeNode*, int x, int y, int horizontalSpacing, TreeNode* selected = nullptr);
 

@@ -14,14 +14,15 @@ public:
 	TreeNode* GetRight() { return m_right; }
 
 	void SetData(int value) {  }
-	void SetLeft(TreeNode* node) {  }
-	void SetRight(TreeNode* node) {  }
+	void SetLeft(TreeNode* node) { this->m_left = node; }
+	void SetRight(TreeNode* node) { this->m_right = node; }
 
-	void Draw(int x, int y, bool selected=false);
-	
+	void Draw(int x, int y, bool selected = false);
+
+	int m_value;
+
 private:
 	// this could also be a pointer to another object if you like
-	int m_value;
 
 	// node's children
 	TreeNode* m_left;
