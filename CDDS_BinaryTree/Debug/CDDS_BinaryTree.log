@@ -1,4 +1,2 @@
 ﻿  BinaryTree.cpp
-C:\Users\s200501\source\repos\BinaryTrees\CDDS_BinaryTree\BinaryTree.cpp(84,13): error C3867: 'BinaryTree::IsEmpty': non-standard syntax; use '&' to create a pointer to member
-C:\Users\s200501\source\repos\BinaryTrees\CDDS_BinaryTree\BinaryTree.cpp(88,19): error C3867: 'TreeNode::GetLeft': non-standard syntax; use '&' to create a pointer to member
-C:\Users\s200501\source\repos\BinaryTrees\CDDS_BinaryTree\BinaryTree.cpp(89,20): error C3867: 'TreeNode::GetRight': non-standard syntax; use '&' to create a pointer to member
+C:\Users\xavie\source\repos\BinaryTrees\CDDS_BinaryTree\BinaryTree.cpp(156): error C4700: uninitialized local variable 'node' used

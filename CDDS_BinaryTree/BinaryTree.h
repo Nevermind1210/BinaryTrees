@@ -33,6 +33,9 @@ private:
 	void PrintOrderedRecurse(TreeNode*);
 	void PrintUnorderedRecurse(TreeNode*);
 
+	TreeNode* currentNode = nullptr;
+	TreeNode* currentParent = nullptr;
+
 
 	void Draw(TreeNode*, int x, int y, int horizontalSpacing, TreeNode* selected = nullptr);
 

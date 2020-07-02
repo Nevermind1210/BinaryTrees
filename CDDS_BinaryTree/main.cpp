@@ -1,24 +1,3 @@
-/*******************************************************************************************
-*
-*   raylib [core] example - Basic window
-*
-*   Welcome to raylib!
-*
-*   To test examples, just press F6 and execute raylib_compile_execute script
-*   Note that compiled executable is placed in the same folder as .c file
-*
-*   You can find all basic examples on C:\raylib\raylib\examples folder or
-*   raylib official webpage: www.raylib.com
-*
-*   Enjoy using raylib. :)
-*
-*   This example has been created using raylib 1.0 (www.raylib.com)
-*   raylib is licensed under an unmodified zlib/libpng license (View raylib.h for details)
-*
-*   Copyright (c) 2014 Ramon Santamaria (@raysan5)
-*
-********************************************************************************************/
-
 #include "raylib.h"
 
 #define RAYGUI_IMPLEMENTATION
@@ -27,6 +6,7 @@
 
 #include "BinaryTree.h"
 #include "TreeNode.h"
+#include <iostream>
 
 int main(int argc, char* argv[])
 {
@@ -70,13 +50,17 @@ int main(int argc, char* argv[])
         {
             // Implement the code to insert valueBoxValue into your binary tree here! 
             m_binaryTree.Insert(valueBoxValue);
-            //m_selectedNode = m_binaryTree.Find(valueBoxValue);
+            m_selectedNode = m_binaryTree.Find(valueBoxValue);
         }
 
-        if (GuiButton(Rectangle{ 160, 60, 125, 30 }, GuiIconText(RICON_CROSS, "Remove")))
+        if (GuiButton(Rectangle{ 160, 60, 125, 30 }, GuiIconText(RICON_BIN, "Remove")))
         {
             // Implement the code to remove the node with value = valueBoxValue from your binary tree here! 
-            //m_binaryTree.Remove(valueBoxValue);
+            m_binaryTree.Remove(valueBoxValue);
+        }
+        if (GuiButton(Rectangle{ 160, 95, 125, 30 }, GuiIconText(RICON_LENS, "Search")))
+        {
+            m_selectedNode = m_binaryTree.Find(valueBoxValue);
         }
 
         // draw the binary tree

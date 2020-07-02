@@ -72,27 +72,84 @@ TreeNode* BinaryTree::Find(int a_nValue)
 
 bool BinaryTree::FindNode(int a_nSearchValue, TreeNode*& ppOutNode, TreeNode*& ppOutParent)
 {
-	if (IsEmpty)
+	//baseline
+	TreeNode* n = new TreeNode(a_nSearchValue);
+
+	while (n != nullptr)
 	{
-		return;
+		if (a_nSearchValue == n->GetData())
+		{
+			ppOutNode = currentNode;
+			ppOutParent = currentParent;
+			return true;
+		}
+
+		else if (a_nSearchValue < currentNode->GetData())
+		{
+			currentParent = currentNode;
+
+			if (currentNode->HasLeft() == true)
+			{
+				currentNode = currentNode->GetLeft();
+			}
+			else{
+			break; // go back after finishing
+		}
 	}
+	else if (a_nSearchValue > currentNode->GetData())
+	{
+		currentParent = currentNode;
 
-	if (a_nSearchValue = )
-
+		if (currentNode->HasRight() == true)
+		{
+			currentNode = currentNode->GetRight();
+		}
+		else{
+		break; // go back after finishing
+		}
+	}
+}
 	return false;
 }
 
 void BinaryTree::Remove(int a_nValue)
 {
-	TreeNode* n = new TreeNode(a_nValue);
 
-	if (IsEmpty)
+	currentNode = nullptr;
+	currentParent = m_pRoot;
+	//create a copy to store 3 nodes into
+	TreeNode* n = m_pRoot;
+	TreeNode* node;
+	TreeNode* leftChild;
+	TreeNode* rightChild;
+
+	if (IsEmpty())
 	{
 		return;
 	}
-	Remove(GetLeft());
-	Remove(GetRight());
-	delete n;
+
+	FindNode(a_nValue, currentNode, currentParent);
+
+	leftChild = currentNode->GetLeft();
+	rightChild = currentNode->GetRight();
+
+	if (currentNode != nullptr)
+	{
+		if (currentParent->GetLeft() == currentNode)
+		{
+			currentParent->SetLeft(nullptr);
+		}
+		else if (currentParent->GetRight() == currentNode)
+		{
+
+		}
+	}
+	if (currentNode == m_pRoot)
+	{
+		m_pRoot = nullptr;
+	}
+
+	currentNode = nullptr;
 }
 
 void BinaryTree::PrintOrdered()
