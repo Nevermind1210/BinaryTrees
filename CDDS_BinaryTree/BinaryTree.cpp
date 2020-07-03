@@ -36,6 +36,7 @@ void BinaryTree::Insert(int a_nValue)
 {
 	//establishing new node from tree node
 	TreeNode* n = new TreeNode(a_nValue);
+
 	//if its empty establish inputted node as root
 	if (IsEmpty())
 	{
@@ -44,6 +45,22 @@ void BinaryTree::Insert(int a_nValue)
 	}
 	// if node exist then these checks come in to see value
 	Insert(m_pRoot, n);
+}
+
+void BinaryTree::Insert(TreeNode* Node)
+{
+	//if its empty establish inputted node as root
+	if (IsEmpty())
+	{
+		m_pRoot = Node;
+		return;
+	}
+	// if node exist then these checks come in to see value
+	TreeNode* parent;
+	TreeNode* current;
+	FindNode(Node->GetData(), parent, current);
+
+	Insert(parent, Node);
 }
 
 void BinaryTree::Insert(TreeNode* parent, TreeNode* n)
@@ -72,84 +89,90 @@ TreeNode* BinaryTree::Find(int a_nValue)
 
 bool BinaryTree::FindNode(int a_nSearchValue, TreeNode*& ppOutNode, TreeNode*& ppOutParent)
 {
-	//baseline
-	TreeNode* n = new TreeNode(a_nSearchValue);
 
-	while (n != nullptr)
+
+	ppOutParent = nullptr;
+	ppOutNode = m_pRoot;
+
+	while (a_nSearchValue != ppOutNode->GetData())
 	{
-		if (a_nSearchValue == n->GetData())
+		if (a_nSearchValue < ppOutNode->GetData() )
 		{
-			ppOutNode = currentNode;
-			ppOutParent = currentParent;
-			return true;
-		}
-
-		else if (a_nSearchValue < currentNode->GetData())
-		{
-			currentParent = currentNode;
-
-			if (currentNode->HasLeft() == true)
+			if(ppOutNode->GetLeft() != nullptr)
 			{
-				currentNode = currentNode->GetLeft();
+				ppOutParent = ppOutNode;
+				ppOutNode = ppOutNode->GetLeft();
+		    }   
+			else
+			{
+				return false;
 			}
-			else{
-			break; // go back after finishing
 		}
-	}
-	else if (a_nSearchValue > currentNode->GetData())
-	{
-		currentParent = currentNode;
-
-		if (currentNode->HasRight() == true)
+		else if (a_nSearchValue > ppOutNode->GetData())
 		{
-			currentNode = currentNode->GetRight();
-		}
-		else{
-		break; // go back after finishing
+			if (ppOutNode->GetRight() != nullptr)
+			{
+				ppOutParent = ppOutNode;
+				ppOutNode = ppOutNode->GetRight();
+			}
+			else
+			{
+				return false;
+			}
 		}
 	}
-}
-	return false;
 }
 
 void BinaryTree::Remove(int a_nValue)
 {
-
-	currentNode = nullptr;
-	currentParent = m_pRoot;
-	//create a copy to store 3 nodes into
-	TreeNode* n = m_pRoot;
-	TreeNode* node;
-	TreeNode* leftChild;
-	TreeNode* rightChild;
+	currentNode = m_pRoot;
+	currentParent = nullptr;
+	////create a copy to store 3 nodes into
+	//TreeNode* n = m_pRoot;
+	//TreeNode* node;
+	TreeNode* leftChild = nullptr;
+	TreeNode* rightChild = nullptr;
 
 	if (IsEmpty())
 	{
 		return;
 	}
 
-	FindNode(a_nValue, currentNode, currentParent);
+	
 
-	leftChild = currentNode->GetLeft();
-	rightChild = currentNode->GetRight();
-
-	if (currentNode != nullptr)
+	if (FindNode(a_nValue, currentNode, currentParent))
 	{
-		if (currentParent->GetLeft() == currentNode)
+		if (currentParent != nullptr)
 		{
-			currentParent->SetLeft(nullptr);
-		}
-		else if (currentParent->GetRight() == currentNode)
-		{
-
+			if (currentParent->GetLeft() == currentNode)
+			{
+				currentParent->SetLeft(nullptr);
+			}
+			else if (currentParent->GetRight() == currentNode)
+			{
+				currentParent->SetRight(nullptr);
+			}
 		}
 	}
+	leftChild = currentNode->GetLeft();
+	rightChild = currentNode->GetRight();
 	if (currentNode == m_pRoot)
 	{
 		m_pRoot = nullptr;
 	}
 
-	currentNode = nullptr;
+	if (leftChild != nullptr)
+	{
+		Insert(leftChild);
+	}
+
+	if (rightChild != nullptr)
+	{
+		Insert(rightChild);
+	}
+	delete currentNode;
+
+	
 }
 
 void BinaryTree::PrintOrdered()

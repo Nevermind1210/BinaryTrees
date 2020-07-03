@@ -17,6 +17,7 @@ public:
 	bool IsEmpty() const;
 	void Insert(int a_nValue);
 	void Insert(TreeNode* parent, TreeNode* n);
+	void Insert(TreeNode* Node);
 	void Remove(int a_nValue);
 	TreeNode* Find(int a_nValue);
 

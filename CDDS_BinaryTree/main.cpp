@@ -24,6 +24,12 @@ int main(int argc, char* argv[])
     BinaryTree m_binaryTree;
     TreeNode* m_selectedNode = nullptr;
 
+   /* for (int i = 0; i < 20; i++)*/
+    for(int i = 5; i > 0; i--)
+    {
+        m_binaryTree.Insert(rand() % 100);
+
+    }
 
     int valueBoxValue = 0;
     bool valueBoxEditMode = false;
@@ -50,7 +56,6 @@ int main(int argc, char* argv[])
         {
             // Implement the code to insert valueBoxValue into your binary tree here! 
             m_binaryTree.Insert(valueBoxValue);
-            m_selectedNode = m_binaryTree.Find(valueBoxValue);
         }
 
         if (GuiButton(Rectangle{ 160, 60, 125, 30 }, GuiIconText(RICON_BIN, "Remove")))
