@@ -153,22 +153,21 @@ bool BinaryTree::FindNode(int a_nSearchValue, TreeNode*& ppOutNode, TreeNode*& p
 
 void BinaryTree::Remove(int a_nValue)
 {
-	// if list is empty of function
-	if (IsEmpty())
-	{
-		return;
-	}
-
+	
 	currentNode = nullptr;
 	currentParent = m_pRoot;
-	////create a copy to store 3 nodes into
-	TreeNode* Tnode = nullptr;
+	////create a copy to store 2 nodes into
 	TreeNode* leftChild;
 	TreeNode* rightChild;
 	
 	//return current to remove and its parents
 	FindNode(a_nValue, currentNode, currentParent);
 
+	if (currentNode == nullptr)
+	{
+		return;
+	}
+	
 	leftChild = currentNode->GetLeft();
 	rightChild = currentNode->GetRight();
 
