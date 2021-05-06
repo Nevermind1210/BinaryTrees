@@ -2,6 +2,9 @@
 Author: Richard Stern
 Description: A simple binary search tree
 Date: 17/4/2015
+
+Modified by : Xavier Arias
+Date: 21/5/2020
 ----------------------------------------*/
 #include "BinaryTree.h"
 #include "TreeNode.h"
